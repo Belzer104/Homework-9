@@ -23,7 +23,13 @@ def main():
 
     while True:
         user_comand = input("Comand to bot ('add, change, phone, show all'): ")
+        comand = user_comand.split()
 
+        
+
+        if user_comand.casefold() == "show all".casefold():
+            print(contact)
+      
         if user_comand.casefold() == "exit".casefold() or user_comand.casefold() == "close".casefold() or user_comand.casefold() == "good bye".casefold():
             print("Good bye!")
             break  
