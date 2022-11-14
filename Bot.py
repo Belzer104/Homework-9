@@ -22,7 +22,8 @@ def main():
         raise IndexError
 
     while True:
-        user_comand = input()
+        user_comand = input("Comand to bot ('add, change, phone, show all'): ")
+
         if user_comand.casefold() == "exit".casefold() or user_comand.casefold() == "close".casefold() or user_comand.casefold() == "good bye".casefold():
             print("Good bye!")
             break  
