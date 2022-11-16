@@ -23,7 +23,7 @@ def input_error(func):
             return exception.args[0]
 
         except IndexError:
-            return 'This contac cannot be added, it exists already'
+            return 'This contac cannot be added, please add phone'
 
         except TypeError:
             return 'Unknown command or parametrs, please try again.'
@@ -35,28 +35,35 @@ contacts = {}
 def hello():
     return "How can I help you?"
 
-def add():
-    print(274)
+@input_error
+def add(comand):
+    name = comand[1] 
+    phone = comand[2]
+    contacts[name] = phone
+    return f"Contact {name} added"
+    
 
-def change():
+def change(comand):
     pass
 
-def phone():
+def phone(comand):
     pass
 
 def show_all():
-    return contacts
+    contact = ""
+    for name, phone in contacts.items():
+        contact += f"{name}: {phone}\n"
+    return contact
 
 def close():
     print("Good bye!")
-    quit()
 
 
 @error_start
 def main():
-    user_comand = input("Start bot enter('Hello, Hi, Start'): ")
+    bot_start = input("Start bot enter('Hello, Hi, Start'): ")
 
-    if user_comand.casefold() == "Hello".casefold() or user_comand.casefold() == "Hi".casefold() or user_comand == "Start".casefold():
+    if bot_start.casefold() == "Hello".casefold() or bot_start.casefold() == "Hi".casefold() or bot_start == "Start".casefold():
             print(hello())
     else:
         raise ImportError
@@ -66,10 +73,10 @@ def main():
         comand = user_comand.split()
 
         if comand[0] == "add":
-            add()
+            print(add(comand))
 
         if user_comand == "show all":
-            print(contacts)
+            print(show_all())
       
         if user_comand == "exit" or user_comand == "close" or user_comand == "good bye":
             close()

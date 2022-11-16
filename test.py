@@ -70,7 +70,7 @@ def parser_input(user_input):
 
 def main():
     while True:
-        user_input = input(">>>")
+        user_input = input(">>>").casefold()
         handler, *args = parser_input(user_input)
         result = handler(*args)
         if not result:
