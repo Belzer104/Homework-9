@@ -7,7 +7,7 @@ def error_start(func):
             try:
                 return func(*args, **kwargs)
             except ImportError:
-                pass
+                print("Bot don't start")
     return wrapper
 
 def input_error(func):
@@ -23,7 +23,7 @@ def input_error(func):
             return exception.args[0]
 
         except IndexError:
-            return 'This contac cannot be added, please add phone'
+            return 'This contac cannot be added, please add user or phone'
 
         except TypeError:
             return 'Unknown command or parametrs, please try again.'
