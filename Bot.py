@@ -1,6 +1,18 @@
+import functools
+
+def error_start(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        while True:
+            try:
+                return func(*args, **kwargs)
+            except ImportError:
+                pass
+    return wrapper
+
 def input_error(func):
     def inner(*args, **kwargs):
-        
+
         try:           
             return func(*args, **kwargs)
                         
@@ -18,33 +30,52 @@ def input_error(func):
                        
     return inner
 
+contacts = {}
+
+def hello():
+    return "How can I help you?"
+
+def add():
+    print(274)
+
+def change():
+    pass
+
+def phone():
+    pass
+
+def show_all():
+    return contacts
+
+def close():
+    print("Good bye!")
+    quit()
 
 
-@input_error
+@error_start
 def main():
-    contact = dict()
-    user_comand = input("Start bot: enter ('Hello, Hi, Start'): ")
+    user_comand = input("Start bot enter('Hello, Hi, Start'): ")
 
-    if user_comand.casefold() == "Hello".casefold() or user_comand.casefold() == "Hi".casefold() or user_comand.casefold() == "Start".casefold():
-            print("How can I help you?")
+    if user_comand.casefold() == "Hello".casefold() or user_comand.casefold() == "Hi".casefold() or user_comand == "Start".casefold():
+            print(hello())
     else:
-        raise IndexError
+        raise ImportError
 
     while True:
-        user_comand = input("Comand to bot ('add, change, phone, show all'): ")
+        user_comand = input("Comand to bot ('add, change, phone, show all'): ").casefold()
         comand = user_comand.split()
 
-        
+        if comand[0] == "add":
+            add()
 
-        if user_comand.casefold() == "show all".casefold():
-            print(contact)
+        if user_comand == "show all":
+            print(contacts)
       
-        if user_comand.casefold() == "exit".casefold() or user_comand.casefold() == "close".casefold() or user_comand.casefold() == "good bye".casefold():
-            print("Good bye!")
-            break  
+        if user_comand == "exit" or user_comand == "close" or user_comand == "good bye":
+            close()
+            break
         
-
-
+        
 
 if __name__ == "__main__":
     main()
