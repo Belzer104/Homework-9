@@ -1,14 +1,23 @@
-import functools
-
 def input_error(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        while True:
-            try:
-                return func(*args, **kwargs)
-            except IndexError:    
-                print("Please start bot")
-    return wrapper
+    def inner(*args, **kwargs):
+        
+        try:           
+            return func(*args, **kwargs)
+                        
+        except KeyError:
+            return 'This contact doesnt exist, please try again.'
+
+        except ValueError as exception:
+            return exception.args[0]
+
+        except IndexError:
+            return 'This contac cannot be added, it exists already'
+
+        except TypeError:
+            return 'Unknown command or parametrs, please try again.'
+                       
+    return inner
+
 
 
 @input_error
