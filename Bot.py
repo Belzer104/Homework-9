@@ -23,7 +23,7 @@ def input_error(func):
             return exception.args[0]
 
         except IndexError:
-            return 'This contac cannot be added, please add user or phone'
+            return 'This contac cannot be added, please write user or phone'
 
         except TypeError:
             return 'Unknown command or parametrs, please try again.'
@@ -37,14 +37,25 @@ def hello():
 
 @input_error
 def add(comand):
-    name = comand[1] 
-    phone = comand[2]
-    contacts[name] = phone
-    return f"Contact {name} added"
+    if comand == 4:
+        fullname = f"{comand[1]} {comand[2]}"
+        phone = comand[3]
+        contacts[fullname] = phone
+        return f"Contact {fullname} added"
+    else:
+        firstname = comand[1] 
+        phone = comand[2]
+        contacts[firstname] = phone
+        return f"Contact {firstname} added"
     
-
+    
+@input_error
 def change(comand):
-    pass
+    firstname = comand[1]
+    phone = comand[2]
+    old_phone = contacts[firstname]
+    contacts[firstname] = phone
+    return f"User {firstname} heve change {old_phone}, new{phone}"
 
 def phone(comand):
     pass
@@ -74,6 +85,9 @@ def main():
 
         if comand[0] == "add":
             print(add(comand))
+        
+        if comand[0] == "change":
+            print(change(comand))
 
         if user_comand == "show all":
             print(show_all())
