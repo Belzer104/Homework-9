@@ -23,7 +23,7 @@ def input_error(func):
             return exception.args[0]
 
         except IndexError:
-            return 'This contac cannot be added, please add user or phone'
+            return 'This contac cannot be added, please add user or phon'
 
         except TypeError:
             return 'Unknown command or parametrs, please try again.'
