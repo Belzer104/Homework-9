@@ -21,7 +21,7 @@ def input_error(func):
             return 'Unknown command or parametrs, please try again.'
                        
     return inner
-    
+
 '''
 Создаем словарь для записи телефонной книги
 '''
@@ -93,9 +93,11 @@ def change(comand):
         return f"User {fullname} heve change {old_phone}, new {phone}"
     
     else:
+
         '''
         Условие если у пользователя только имя и тд
         '''
+
         firstname = comand[1]
         phone = comand[2]
         old_phone = contacts[firstname]
@@ -112,12 +114,20 @@ def phone(comand):
 
     if len(comand) == 3:
 
+        '''
+        Условие если у пользователя полное имя
+        '''
+
         fullname = f"{comand[1]} {comand[2]}" 
         phone = contacts[fullname]
 
         return f"{fullname}: {phone}"
 
     else:
+
+        '''
+        Условие если у пользователя только имя и тд
+        '''
 
         firstname = comand[1]
         phone = contacts[firstname]
