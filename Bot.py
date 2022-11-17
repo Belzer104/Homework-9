@@ -112,15 +112,19 @@ def show_all():
 
 def close():
     print("Good bye!")
+    quit()
 
 
 @error_start
 def main():
     bot_start = input("Start bot enter('Hello, Hi, Start'): ").casefold()
 
-    if bot_start == "hello" or bot_start == "hi" or bot_start == "start":
+    if bot_start == "hello" or bot_start == "hi" or bot_start == "start":        
             print(hello())
-
+    
+    elif bot_start == "exit" or bot_start == "close" or bot_start == "good bye":
+            close()
+            
     else:
         raise ImportError
 
@@ -143,8 +147,7 @@ def main():
       
         elif user_comand == "exit" or user_comand == "close" or user_comand == "good bye":
             close()
-            break
-        
+            
         else:
             print("Unknown command or parametrs, please try again")
         
