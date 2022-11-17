@@ -98,7 +98,7 @@ def phone(comand):
         return f"{firstname}: {phone}"
 
 
-
+@input_error
 def show_all():
 
     contact = ""
@@ -116,9 +116,9 @@ def close():
 
 @error_start
 def main():
-    bot_start = input("Start bot enter('Hello, Hi, Start'): ")
+    bot_start = input("Start bot enter('Hello, Hi, Start'): ").casefold()
 
-    if bot_start.casefold() == "Hello".casefold() or bot_start.casefold() == "Hi".casefold() or bot_start == "Start".casefold():
+    if bot_start == "hello" or bot_start == "hi" or bot_start == "start":
             print(hello())
 
     else:
@@ -132,19 +132,21 @@ def main():
         if comand[0] == "add":
             print(add(comand))
         
-        if comand[0] == "change":
+        elif comand[0] == "change":
             print(change(comand))
         
-        if comand[0] == "phone":
+        elif comand[0] == "phone":
             print(phone(comand))
 
-        if user_comand == "show all":
+        elif user_comand == "show all":
             print(show_all())
       
-        if user_comand == "exit" or user_comand == "close" or user_comand == "good bye":
+        elif user_comand == "exit" or user_comand == "close" or user_comand == "good bye":
             close()
             break
         
+        else:
+            print("Unknown command or parametrs, please try again")
         
 if __name__ == "__main__":
     main()
