@@ -49,13 +49,16 @@ def add(comand):
 
         return f"Contact {fullname} added"
 
-    else:
+    elif len(comand) == 3 and comand[2].isdigit():
 
         firstname = comand[1] 
         phone = comand[2]
         contacts[firstname] = phone
 
         return f"Contact {firstname} added"
+    
+    else:
+        raise IndexError
     
     
 @input_error
@@ -65,9 +68,9 @@ def change(comand):
 
         fullname = f"{comand[1]} {comand[2]}"
         phone = comand[3]
-        contacts[fullname] = phone
         old_phone = contacts[fullname]
-
+        contacts[fullname] = phone
+        
         return f"User {fullname} heve change {old_phone}, new {phone}"
     
     else:
@@ -79,9 +82,21 @@ def change(comand):
 
         return f"User {firstname} heve change {old_phone}, new {phone}"
 
-
+@input_error
 def phone(comand):
-    pass
+
+    if len(comand) == 3:
+
+        fullname = f"{comand[1]} {comand[2]}" 
+        phone = contacts[fullname]
+        return f"{fullname}: {phone}"
+
+    else:
+
+        firstname = comand[1]
+        phone = contacts[firstname]
+        return f"{firstname}: {phone}"
+
 
 
 def show_all():
@@ -119,6 +134,9 @@ def main():
         
         if comand[0] == "change":
             print(change(comand))
+        
+        if comand[0] == "phone":
+            print(phone(comand))
 
         if user_comand == "show all":
             print(show_all())
