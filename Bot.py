@@ -21,10 +21,12 @@ def input_error(func):
             return 'Unknown command or parametrs, please try again.'
                        
     return inner
+    
 '''
 Создаем словарь для записи телефонной книги
 '''
 contacts = {}
+
 '''
 Создаем функцию "hello" которая будет возвращать ответ 
 после того как пользователь запустит бот
