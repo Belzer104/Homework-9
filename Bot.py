@@ -34,7 +34,6 @@ def input_error(func):
 contacts = {}
 
 def hello():
-
     return "How can I help you?"
 
 
@@ -82,6 +81,7 @@ def change(comand):
 
         return f"User {firstname} heve change {old_phone}, new {phone}"
 
+
 @input_error
 def phone(comand):
 
@@ -89,16 +89,17 @@ def phone(comand):
 
         fullname = f"{comand[1]} {comand[2]}" 
         phone = contacts[fullname]
+
         return f"{fullname}: {phone}"
 
     else:
 
         firstname = comand[1]
         phone = contacts[firstname]
+
         return f"{firstname}: {phone}"
 
 
-@input_error
 def show_all():
 
     contact = ""
@@ -110,7 +111,6 @@ def show_all():
 
 
 def close():
-
     print("Good bye!")
 
 
